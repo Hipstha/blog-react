@@ -1,0 +1,14 @@
+<section class="category-selector animate__animated animate__fadeIn">
+    <article class="category-selector-container">
+        <div class="category-selector-menu">
+            <ul>
+                <li [ngClass]="{'active': allSelected}" (click)="filterDBBy('All')" class="category-selector-option">All</li>
+                <li [ngClass]="{'active': TravelSelected}" (click)="filterDBBy('Travel')" class="category-selector-option">Travel</li>
+                <li [ngClass]="{'active': LifestyleSelected}" (click)="filterDBBy('Lifestyle')" class="category-selector-option">Lifestyle</li>
+                <li [ngClass]="{'active': BusinessSelected}" (click)="filterDBBy('Business')" class="category-selector-option">Business</li>
+                <li [ngClass]="{'active': FoodSelected}" (click)="filterDBBy('Food')" class="category-selector-option">Food</li>
+                <li [ngClass]="{'active': WorkSelected}" (click)="filterDBBy('Work')" class="category-selector-option last">Work</li>
+            </ul>
+        </div>
+    </article>
+</section>

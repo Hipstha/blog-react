@@ -1,0 +1,16 @@
+<app-category-selector (filter)="filterDatabase($event)">
+</app-category-selector>
+
+<app-add-post></app-add-post>
+
+<section class="posts-container" *ngIf="isEmpty">
+    <div class="post animate__animated animate__fadeIn" *ngFor="let dataItem of filteredDb">
+        <app-post [dataItem]="dataItem"></app-post>
+    </div>
+</section>
+
+<section class="posts-container" *ngIf="!isEmpty">
+    <div class="noData post animate__animated animate__fadeIn">
+        <h2>We don't have posts in this category</h2>
+    </div>
+</section>

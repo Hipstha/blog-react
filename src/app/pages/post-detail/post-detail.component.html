@@ -1,0 +1,41 @@
+<section class="animate__animated animate__fadeIn">
+    <article class="post-header" [ngStyle]="{'background-image': 'url('+thisDatabase.img+')'}">
+        <div class="post-header-container">
+            <div class="return-options">
+                <a routerLink="/posts"><span class="material-icons">arrow_back_ios</span> View Posts</a>
+            </div>
+            <div class="post-header-title">
+                <h2>{{ thisDatabase.title }}</h2>
+            </div>
+        </div>
+    </article>
+    <article class="post-summary">
+        <div class="post-summary-container">
+            <div class="summary">
+                <p>
+                    {{ thisDatabase.summary }}
+                </p>
+            </div>
+        </div>
+    </article>
+    <article class="post-comments">
+        <div class="post-comments-title">
+            <h3>Comments</h3>
+        </div>
+        <div class="comments-section">
+            <div class="this-comment-box" *ngFor="let comment of thisDatabase.comments">
+                <app-comment-box [thisComment]="comment"></app-comment-box>
+            </div>
+        </div>
+        <div class="comment-form">
+            <form autocomplete="false" [formGroup]="commentsForm" (ngSubmit)="addComment()">
+                <div class="form-col">
+                    <textarea name="comment" [ngClass]="{invalid: invalidForm}" id="comment-input" rows="1" placeholder="write a comment" formControlName="comment"></textarea>
+                </div>
+                <div class="form-col">
+                    <button type="submit" class="submit-button">Add</button>
+                </div>
+            </form>
+        </div>
+    </article>
+</section>

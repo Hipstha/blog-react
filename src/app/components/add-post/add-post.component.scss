@@ -1,0 +1,58 @@
+.btn-modal {
+    position: fixed;
+    top: 5rem;
+    right: 2rem;
+    color: white;
+    background-color: coral;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    z-index: 2;
+    span {
+        font-size: 2rem;
+    }
+}
+
+.modal {
+    .modal-header {
+        border-bottom: 0;
+        display: flex;
+        justify-content: center;
+        color: black;
+        h5 {
+            font-weight: 600;
+            font-size: 23px;
+        }
+    }
+    form {
+        .modal-body {
+            .form-row {
+                margin-bottom: 2rem;
+                input,
+                textarea,
+                select {
+                    width: 100%;
+                    border-left: 0;
+                    border-top: 0;
+                    border-right: 0;
+                    border-bottom: 1px solid #949494;
+                    background-color: unset;
+                }
+                textarea {}
+                select {
+                    option {}
+                }
+            }
+        }
+    }
+    .modal-footer {
+        border-top: 0;
+        .btn-canel {
+            color: black;
+        }
+        .btn-submit {
+            color: white;
+            background-color: #3F51B5;
+        }
+    }
+}
