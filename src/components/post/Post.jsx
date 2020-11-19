@@ -8,14 +8,17 @@ const Post = (props) => {
     <Link to={`/post/${props.postId}`}>
       <article className="post-container">
         <div className="post-image">
-          <img src="https://source.unsplash.com/random" alt="postImage" />
+          <img
+            src="https://cdn.pixabay.com/photo/2016/01/19/17/19/foggy-1149637_960_720.jpg"
+            alt="postImage"
+          />
         </div>
         <div className="post-body">
           <div className="post-title">
             <h2>Título</h2>
           </div>
           <div className="onHover-animation"></div>
-          <div className="post-comments">
+          <div className="post-comments-home">
             <p>
               <span>3 </span> <span>Comments </span>{" "}
               <span className="material-icons">icon</span>

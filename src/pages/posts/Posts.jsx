@@ -2,12 +2,14 @@ import React from "react";
 
 import CategorySelector from "../../components/category-selector/CategorySelector";
 import Post from "../../components/post/Post";
+import AddPost from "../../components/add-post/AddPost";
 import "./Posts.scss";
 
 const Posts = () => {
   return (
     <>
       <CategorySelector />
+      <AddPost />
 
       <section className="posts-container">
         <div className="post">
