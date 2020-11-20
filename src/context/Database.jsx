@@ -97,7 +97,7 @@ const DatabaseProvider = (props) => {
     ]);
   }, [query]);
   return (
-    <DatabaseContext.Provider value={{ database, setQuery }}>
+    <DatabaseContext.Provider value={{ database, setQuery, setDatabase }}>
       {props.children}
     </DatabaseContext.Provider>
   );

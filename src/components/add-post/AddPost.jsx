@@ -1,12 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { DatabaseContext } from "../../context/Database";
+import Swal from "sweetalert2";
 import "./AddPost.scss";
 
 const AddPost = () => {
+  const { database, setDatabase } = useContext(DatabaseContext);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [create, setCreate] = useState({
+    id: 10,
+    title: "",
+    summary: "",
+    category: "Travel",
+    img: "https://source.unsplash.com/random",
+    comments: [],
+  });
+
+  const getFormData = (e) => {
+    setCreate({
+      ...create,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const createElement = async () => {
+    let thisDb = database.map((data) => data);
+    create.id = thisDb.length + 1;
+    await thisDb.unshift(create);
+    setDatabase(thisDb);
+    handleClose();
+    Swal.fire("Success", "Your post have been updated", "success");
+  };
 
   return (
     <>
@@ -25,25 +54,38 @@ const AddPost = () => {
         <Form>
           <Modal.Body>
             <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Control type="text" placeholder="Title" />
+              <Form.Control
+                onChange={getFormData}
+                name="title"
+                type="text"
+                placeholder="Title"
+              />
             </Form.Group>
 
             <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Control as="textarea" rows={1} placeholder="Description" />
+              <Form.Control
+                onChange={getFormData}
+                name="summary"
+                as="textarea"
+                rows={1}
+                placeholder="Description"
+              />
             </Form.Group>
 
             <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Control as="select">
-                <option value="">Travel</option>
-                <option value="">Lifestyle</option>
-                <option value="">Business</option>
-                <option value="">Foos</option>
-                <option value="">Work</option>
+              <Form.Control onChange={getFormData} name="category" as="select">
+                <option value="Travel">Travel</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Business">Business</option>
+                <option value="Foos">Food</option>
+                <option value="Work">Work</option>
               </Form.Control>
             </Form.Group>
 
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Control
+                onChange={getFormData}
+                name="img"
                 type="text"
                 placeholder="image url"
                 value="https://source.unsplash.com/random"
@@ -58,7 +100,7 @@ const AddPost = () => {
             <Button
               variant="default"
               className="btn-submit"
-              onClick={handleClose}
+              onClick={createElement}
             >
               Save Changes
             </Button>
