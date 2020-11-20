@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { DatabaseContext } from "../../context/Database";
@@ -9,8 +9,30 @@ import "./PostDetail.scss";
 const PostDetail = () => {
   const { postId } = useParams();
   const { database } = useContext(DatabaseContext);
+
   let thisDatabase = database.filter((data) => data.id === Number(postId))[0];
   const { title, summary, img, comments } = thisDatabase;
+
+  const [comment, setComment] = useState({
+    user: "Joe Doew",
+    comment: "",
+  });
+
+  const getFormData = (e) => {
+    setComment({
+      ...comment,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const submitedForm = async (e) => {
+    e.preventDefault();
+    document.getElementById("comment-input").value = "";
+    setComment({
+      user: "Joe Doew",
+      comment: "",
+    });
+  };
 
   let backImg = {
     backgroundImage: `url('${img}')`,
@@ -48,17 +70,22 @@ const PostDetail = () => {
           ))}
         </div>
         <div className="comment-form">
-          <form action="#">
+          <form>
             <div className="form-col">
               <textarea
                 name="comment"
                 id="comment-input"
                 rows="0"
                 placeholder="Write a comment"
+                onChange={getFormData}
               ></textarea>
             </div>
             <div className="form-col">
-              <button type="submit" className="submit-button">
+              <button
+                onClick={(e) => submitedForm(e)}
+                type="button"
+                className="submit-button"
+              >
                 Add
               </button>
             </div>
