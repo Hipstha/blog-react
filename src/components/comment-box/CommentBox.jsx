@@ -1,7 +1,8 @@
 import React from "react";
 import "./CommentBox.scss";
 
-const CommentBox = () => {
+const CommentBox = (props) => {
+  const { user, comment } = props.commentData;
   return (
     <div className="comment-box">
       <div className="comment">
@@ -12,15 +13,10 @@ const CommentBox = () => {
         </div>
         <div className="comment-body">
           <div className="comment-user">
-            <h3>Usuario</h3>
+            <h3>{user}</h3>
           </div>
           <div className="comment-text">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-              architecto ipsa tempore dignissimos nostrum rem reiciendis dolore
-              tenetur, cupiditate eaque autem delectus inventore reprehenderit
-              commodi voluptatibus! Velit aut quis molestiae.
-            </p>
+            <p>{comment}</p>
           </div>
         </div>
       </div>

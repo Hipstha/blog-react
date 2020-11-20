@@ -4,6 +4,9 @@ import Header from "./shared/Header/Header";
 import Posts from "./pages/posts/Posts";
 import PostDetail from "./pages/post-detail/PostDetail";
 
+//context
+import DatabaseProvider from "./context/Database";
+
 // Module import
 import {
   BrowserRouter as Router,
@@ -14,19 +17,21 @@ import {
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <DatabaseProvider>
+      <div className="App">
+        <Header />
 
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/posts" />
-          </Route>
-          <Route path="/posts" component={Posts} />
-          <Route path="/post/:postId" component={PostDetail} />
-        </Switch>
-      </Router>
-    </div>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to="/posts" />
+            </Route>
+            <Route path="/posts" component={Posts} />
+            <Route path="/post/:postId" component={PostDetail} />
+          </Switch>
+        </Router>
+      </div>
+    </DatabaseProvider>
   );
 }
 

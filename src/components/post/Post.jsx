@@ -4,37 +4,31 @@ import "./Post.scss";
 import { Link } from "react-router-dom";
 
 const Post = (props) => {
+  const { id, title, summary, img, category, comments } = props.postData;
+  const summaryShort = summary.substring(0, 150) + "...";
   return (
-    <Link to={`/post/${props.postId}`}>
+    <Link to={`/post/${id}`}>
       <article className="post-container">
         <div className="post-image">
-          <img
-            src="https://cdn.pixabay.com/photo/2016/01/19/17/19/foggy-1149637_960_720.jpg"
-            alt="postImage"
-          />
+          <img src={img} alt="postImage" />
         </div>
         <div className="post-body">
           <div className="post-title">
-            <h2>Título</h2>
+            <h2>{title}</h2>
           </div>
           <div className="onHover-animation"></div>
           <div className="post-comments-home">
             <p>
-              <span>3 </span> <span>Comments </span>{" "}
+              <span>{comments.length} </span> <span>Comments </span>{" "}
               <span className="material-icons">icon</span>
             </p>
           </div>
           <div className="post-description">
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia
-              illo, adipisci vel magnam obcaecati recusandae pariatur molestias
-              reprehenderit similique commodi minima eligendi hic dolore
-              dignissimos perferendis fugit corporis beatae impedit.
-            </p>
+            <p>{summaryShort}</p>
           </div>
           <div className="post-footer">
             <div className="post-category">
-              <p>Travel</p>
+              <p>{category}</p>
             </div>
             <div className="post-option">
               <p className="pruebaClick">

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { DatabaseContext } from "../../context/Database";
 
 import CategorySelector from "../../components/category-selector/CategorySelector";
 import Post from "../../components/post/Post";
@@ -6,24 +8,18 @@ import AddPost from "../../components/add-post/AddPost";
 import "./Posts.scss";
 
 const Posts = () => {
+  const { database } = useContext(DatabaseContext);
   return (
     <>
       <CategorySelector />
       <AddPost />
 
       <section className="posts-container">
-        <div className="post">
-          <Post postId={"1"} />
-        </div>
-        <div className="post">
-          <Post postId={"2"} />
-        </div>
-        <div className="post">
-          <Post postId={"3"} />
-        </div>
-        <div className="post">
-          <Post postId={"4"} />
-        </div>
+        {database.map((post) => (
+          <div key={post.id} className="post">
+            <Post postData={post} />
+          </div>
+        ))}
       </section>
     </>
   );

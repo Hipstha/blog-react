@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { DatabaseContext } from "../../context/Database";
+
 import CommentBox from "../../components/comment-box/CommentBox";
 import "./PostDetail.scss";
 
 const PostDetail = () => {
-  let { postId } = useParams();
+  const { postId } = useParams();
+  const { database } = useContext(DatabaseContext);
+  let thisDatabase = database.filter((data) => data.id === Number(postId))[0];
+  const { title, summary, img, comments } = thisDatabase;
+
   let backImg = {
-    backgroundImage:
-      "url('https://cdn.pixabay.com/photo/2016/01/19/17/19/foggy-1149637_960_720.jpg')",
+    backgroundImage: `url('${img}')`,
   };
-  console.log(postId);
   return (
     <section>
       <article className="post-header" style={backImg}>
@@ -21,19 +25,14 @@ const PostDetail = () => {
             </Link>
           </div>
           <div className="post-header-title">
-            <h2>Prueba título</h2>
+            <h2>{title}</h2>
           </div>
         </div>
       </article>
       <article className="post-summary">
         <div className="post-summary-container">
           <div className="summary">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam eligendi magni nemo accusantium, sequi porro eos ab
-              cumque voluptatibus accusamus hic ullam aperiam sit ipsam
-              laudantium tenetur beatae ipsa suscipit!
-            </p>
+            <p>{summary}</p>
           </div>
         </div>
       </article>
@@ -42,18 +41,11 @@ const PostDetail = () => {
           <h3>Comments</h3>
         </div>
         <div className="comments-section">
-          <div className="this-comment-box">
-            <CommentBox />
-          </div>
-          <div className="this-comment-box">
-            <CommentBox />
-          </div>
-          <div className="this-comment-box">
-            <CommentBox />
-          </div>
-          <div className="this-comment-box">
-            <CommentBox />
-          </div>
+          {comments.map((comment, idx) => (
+            <div key={idx} className="this-comment-box">
+              <CommentBox commentData={comment} />
+            </div>
+          ))}
         </div>
         <div className="comment-form">
           <form action="#">

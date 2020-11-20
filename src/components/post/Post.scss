@@ -17,7 +17,7 @@ a {
     }
     .post-body {
       filter: brightness();
-      padding: 92px 20px 10px 30px;
+      padding: 83px 20px 10px 30px;
       .post-title {
         h2 {
           font-weight: 700;
@@ -116,12 +116,14 @@ a {
   a {
     .post-container {
       .post-image {
+        margin-bottom: -381px;
         img {
         }
       }
       .post-body {
         padding: 83px 20px 10px 30px;
         .post-title {
+          height: 87px;
           h2 {
             width: 90%;
           }
