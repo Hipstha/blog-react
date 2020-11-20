@@ -8,18 +8,27 @@ import AddPost from "../../components/add-post/AddPost";
 import "./Posts.scss";
 
 const Posts = () => {
-  const { database } = useContext(DatabaseContext);
+  const { database, category } = useContext(DatabaseContext);
   return (
     <>
       <CategorySelector />
       <AddPost />
-
       <section className="posts-container">
-        {database.map((post) => (
-          <div key={post.id} className="post">
-            <Post postData={post} />
-          </div>
-        ))}
+        {database.map((post) => {
+          if (post.category === category) {
+            return (
+              <div key={post.id} className="post">
+                <Post postData={post} />
+              </div>
+            );
+          } else if (category === "All") {
+            return (
+              <div key={post.id} className="post">
+                <Post postData={post} />
+              </div>
+            );
+          }
+        })}
       </section>
     </>
   );

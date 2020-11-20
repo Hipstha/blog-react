@@ -77,7 +77,7 @@ const AddPost = () => {
                 <option value="Travel">Travel</option>
                 <option value="Lifestyle">Lifestyle</option>
                 <option value="Business">Business</option>
-                <option value="Foos">Food</option>
+                <option value="Food">Food</option>
                 <option value="Work">Work</option>
               </Form.Control>
             </Form.Group>

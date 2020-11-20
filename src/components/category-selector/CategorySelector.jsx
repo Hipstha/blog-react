@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DatabaseContext } from "../../context/Database";
 import "./CategorySelector.scss";
 
 const CategorySelector = () => {
@@ -9,8 +10,12 @@ const CategorySelector = () => {
   const [stateFood, setStateFood] = useState(false);
   const [stateWork, setStateWork] = useState(false);
 
+  const { category, setCategory } = useContext(DatabaseContext);
+
+  // setUpDatabase(database);
+
   const filterDBBy = (selector) => {
-    console.log(selector);
+    setCategory(selector);
     setActiveItem(selector);
   };
 
@@ -23,7 +28,7 @@ const CategorySelector = () => {
         setStateBusiness(false);
         setStateFood(false);
         setStateWork(false);
-        break;
+        return;
       }
       case "Travel": {
         setStateAll(false);
@@ -32,7 +37,7 @@ const CategorySelector = () => {
         setStateBusiness(false);
         setStateFood(false);
         setStateWork(false);
-        break;
+        return;
       }
       case "Lifestyle": {
         setStateAll(false);
@@ -41,7 +46,7 @@ const CategorySelector = () => {
         setStateBusiness(false);
         setStateFood(false);
         setStateWork(false);
-        break;
+        return;
       }
       case "Business": {
         setStateAll(false);
@@ -50,7 +55,7 @@ const CategorySelector = () => {
         setStateBusiness(true);
         setStateFood(false);
         setStateWork(false);
-        break;
+        return;
       }
       case "Food": {
         setStateAll(false);
@@ -59,7 +64,7 @@ const CategorySelector = () => {
         setStateBusiness(false);
         setStateFood(true);
         setStateWork(false);
-        break;
+        return;
       }
       case "Work": {
         setStateAll(false);
@@ -68,10 +73,9 @@ const CategorySelector = () => {
         setStateBusiness(false);
         setStateFood(false);
         setStateWork(true);
-        break;
+        return;
       }
       default: {
-        console.log("Hubo un error");
         break;
       }
     }

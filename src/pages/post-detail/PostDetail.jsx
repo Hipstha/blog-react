@@ -11,6 +11,7 @@ const PostDetail = () => {
   const { database } = useContext(DatabaseContext);
 
   let thisDatabase = database.filter((data) => data.id === Number(postId))[0];
+
   const { title, summary, img, comments } = thisDatabase;
 
   const [comment, setComment] = useState({
@@ -28,6 +29,7 @@ const PostDetail = () => {
   const submitedForm = async (e) => {
     e.preventDefault();
     document.getElementById("comment-input").value = "";
+    comments.push(comment);
     setComment({
       user: "Joe Doew",
       comment: "",
